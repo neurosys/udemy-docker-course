@@ -1,7 +1,8 @@
 
-### docker run [-it] <image name> [alternative command]
+### docker run [-p <src port>:<dst port>] [-it] <image name> [alternative command]
 Creates a container and then starts it using a default command or the alternative given one
 -it run interactively
+-p <src port>:<dst port> Everything that is received on <src port> (host machine) will be sent to <dst port> docker container
 
 Examples
 docker run busybox echo "Hi there"
@@ -40,3 +41,7 @@ We attach to the container and run inside it a second command
 -it allows us to provide input to the container
 
 
+### docker info
+Shows info about docker including where it stores the images (/var/lib/docker or C:\ProgramData\DockerDesktop)
+
+### docker inspect <IMG ID>
