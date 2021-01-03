@@ -46,9 +46,13 @@ Show status of the containers inside docker-compose
 #### image: <source image>
     specifies an image to be used as it is, no other changes made to it
 
-#### build: <path to Dockerfile>
+#### build: <path to context>
     In case we do need to make some changes to an image we give the path to a
     Dockerfile so that docker-compose can build it
+    build can have sub sections as follows:
+
+#### context: <path to context>
+#### dockerfile: <path to the dockerfile>
 
 #### ports:
     A list of port mappings of the form "- <host port>:<docker port>"
@@ -56,10 +60,27 @@ Show status of the containers inside docker-compose
     ALL the containers specified in docker-compose.yml will have network
         access to each other implicitly
 
+#### volumes:
+    A list of paths that can have two forms
+    - <host path>:<guest path> 
+    - <guest path>
+    First one mean that the host path should be mounted on the guest path
+    Second one is used to specify a path where the guest path should be left untouched 
+    If the first command is similar to linux mount command, the second would be
+        as if inside the folder that has been mounted we will still be able to see
+        the guest path
+
+#### command: ["<my cmd>"]
+    A section that can override the default command the Dockerfile is specifying.
+    OBS: each parameter is set in double quotes separated by comma
+    Example:
+        ["grep", "-Rn", "--include=*.java", "TODO", "."]
+
+
 #### restart:
-    Defines a policy regarind the conditions in which a container should be
+    Defines a policy regarding the conditions in which a container should be
         restarted
-    OBS: notice that the "no" policie has double quotes around, to distinguish
+    OBS: notice that the "no" policy has double quotes around, to distinguish
         from no which in yml markup means false
 
 +----------------+------------------------------------------------------------+

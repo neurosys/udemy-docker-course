@@ -1,8 +1,10 @@
 
-### docker run [-p <src port>:<dst port>] [-it] <image name> [alternative command]
+### docker run [-p <src port>:<dst port>] [-v <host path>:<guest path>] [-it] <image name> [alternative command]
 Creates a container and then starts it using a default command or the alternative given one
 -it run interactively
 -p <src port>:<dst port> Everything that is received on <src port> (host machine) will be sent to <dst port> docker container
+-v <host path>:<guest path> maps host folder inside docker to guest path
+-v <guest path> tells docker that we want to use the folder inside the container, don't map it to anything
 
 Examples
 docker run busybox echo "Hi there"
@@ -40,6 +42,9 @@ When issuing a docker sotp, if the process doesn't shut down by itself in 10 sec
 We attach to the container and run inside it a second command
 -it allows us to provide input to the container
 
+### docker attach <ID>
+Will attach to the specified container's running command
+This means our terminal will be connected to stdin,stdout,stderr of that process allowing us to interact with it
 
 ### docker info
 Shows info about docker including where it stores the images (/var/lib/docker or C:\ProgramData\DockerDesktop)
